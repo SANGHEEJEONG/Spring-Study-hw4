@@ -31,5 +31,7 @@ public class JoinService {
         data.setUsername(username);
         data.setPassword(bCryptPasswordEncoder.encode(password)); // 암호화 진행 후 주입
         data.setRole("ROLE_ADMIN"); // 접두사를 무조건 가져야 함
+
+        userRepository.save(data);
     }
 }

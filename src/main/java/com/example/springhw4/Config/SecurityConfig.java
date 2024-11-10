@@ -1,5 +1,6 @@
 package com.example.springhw4.Config;
 
+import com.example.springhw4.jwt.JWTFilter;
 import com.example.springhw4.jwt.JWTUtil;
 import com.example.springhw4.jwt.LoginFilter;
 import lombok.RequiredArgsConstructor;
@@ -61,6 +62,8 @@ public class SecurityConfig {
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated());
 
+        http
+                .addFilterAt(new JWTFilter(jwtUtil), LoginFilter.class);
         http
                 // 정확한 자리에 대체 하기 위해 At
                 .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration),jwtUtil), UsernamePasswordAuthenticationFilter.class);

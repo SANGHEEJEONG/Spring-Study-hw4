@@ -40,8 +40,8 @@ public class JWTUtil {
                 .claim("username", username)
                 .claim("role", role)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + expiredMs)) // expiredMs 토큰의 유효시간
-                .signWith(secretKey) // 암호화
+                .expiration(new Date(System.currentTimeMillis() + expiredMs))
+                .signWith(secretKey)
                 .compact();
     }
 }
